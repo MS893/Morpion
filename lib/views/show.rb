@@ -46,9 +46,10 @@ class Show
   # affiche les règles du jeu sur le terminal
   def show_rules(game)
     puts "\nVoici les règles du jeu :\n"
-    puts "#{game.array_player[0].name} joue les X et #{game.array_player[1].name} les O"
-    puts "#{game.array_player[0].name} commence, il est avantagé, la prochaine partie les roles seront inversés"
-    puts "\nPour jouer, il faut renseigner la ligne à jouer (A, B ou C) et la colonne à jouer (1, 2 ou 3"
+    puts "Pour toutes les parties, #{game.array_player[0].name} joue les x et #{game.array_player[1].name} les o"
+    puts "#{game.array_player[0].name} commence, il est avantagé, la prochaine partie les rôles seront inversés"
+    puts "\nPour jouer, il faut donner la ligne (A, B ou C) et la colonne (1, 2 ou 3) à jouer"
+    puts "Attention : si tu te trompes et joues sur une case déjà prise, tu passes ton tour !!!"
     print "\nEntrée pour commencer"
     gets
     clear_screen()
@@ -70,7 +71,7 @@ class Show
       end
     end
     puts "  q. Quitter"
-    print "\nA #{game.current_player.name} de jouer > "
+    print "\nA #{game.current_player.name} (#{game.current_player.value}) de jouer > "
   end
 
 end

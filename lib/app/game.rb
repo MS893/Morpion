@@ -71,17 +71,14 @@ class Game
 
   # nouveau round en changeant celui qui commence
   def new_round
-    # On inverse les symboles (valeurs) des deux joueurs
-    if @array_player[0].value == 'x'
-      @array_player[0].value = 'o'
-      @array_player[1].value = 'x'
-    end
+    # On swap les 2 joueurs
+    @array_player[0], @array_player[1] = @array_player[1], @array_player[0]
     # On réinitialise le jeu
     @board = Board.new
     # On remet le statut de la partie à "en cours"
     @status = "on going"
     # Le joueur qui a maintenant les 'x' commence
-    @current_player = @array_player.find { |player| player.value == 'x' }
+    @current_player = @array_player[0] # Le joueur qui commence est celui qui n'avait pas commencé la partie d'avant
     puts "\nC'est parti pour une nouvelle manche ! Les rôles ont été échangés."
     print "Appuyez sur Entrée pour continuer..."
     gets

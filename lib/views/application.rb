@@ -58,6 +58,8 @@ class Application
             break # on quitte le programme
           else
             Show.new.clear_screen
+            # liste des choix possibles
+            array_avail = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
             my_game.new_round
             Show.new.clear_screen
           end

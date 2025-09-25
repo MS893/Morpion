@@ -16,10 +16,10 @@ class Board
       [0, 4, 8], [2, 4, 6]             # Diagonales
     ]
     # on vérifie s'il y a un gagnant (ce qui écrasera la valeur de status si modifié ci-dessus)
-    winning_combinations.each do |combo|
-      val1 = @board_cases[combo[0]].value
-      val2 = @board_cases[combo[1]].value
-      val3 = @board_cases[combo[2]].value
+    winning_combinations.each do |combination|
+      val1 = @board_cases[combination[0]].value
+      val2 = @board_cases[combination[1]].value
+      val3 = @board_cases[combination[2]].value
       if val1 != " " && val1 == val2 && val2 == val3
         return val1 # Renvoie le symbole du gagnant ('x' ou 'o')
       end

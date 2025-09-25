@@ -1,0 +1,27 @@
+require:
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  DisplayStyleGuide: true
+  DisplayCopNames: true
+  DisabledByDefault: false
+  NewCops: enable
+  TargetRubyVersion: 3.4.2
+  Exclude:
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+
+Rails:
+  Enabled: True
+
+Metrics/BlockLength:
+  Exclude:
+  - 'spec/**/*.rb'
+  - 'Guardfile'
+  - 'vendor/bundle'

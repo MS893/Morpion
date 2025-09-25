@@ -13,34 +13,69 @@ class Game
   end
 
   # le joueur courant a joué
-  def turn(choice)
+  def turn(choice, array_avail)
     cases = board.board_cases
     case choice
     when '1'
-      cases[0].value = @current_player.value
+      if cases[0].value == " "
+        cases[0].value = @current_player.value
+        array_avail[0] = " " 
+      end
     when '2'
-      cases[1].value = @current_player.value
+      if cases[1].value == " "
+        cases[1].value = @current_player.value
+        array_avail[1] = " " 
+      end
     when '3'
-      cases[2].value = @current_player.value
+      if cases[2].value == " "
+        cases[2].value = @current_player.value
+        array_avail[2] = " " 
+      end
     when '4'
-      cases[3].value = @current_player.value
+      if cases[3].value == " "
+        cases[3].value = @current_player.value
+        array_avail[3] = " " 
+      end
     when '5'
-      cases[4].value = @current_player.value
+      if cases[4].value == " "
+        cases[4].value = @current_player.value
+        array_avail[4] = " " 
+      end
     when '6'
-      cases[5].value = @current_player.value
+      if cases[5].value == " "
+        cases[5].value = @current_player.value
+        array_avail[5] = " " 
+      end
     when '7'
-      cases[6].value = @current_player.value
+      if cases[6].value == " "
+        cases[6].value = @current_player.value
+        array_avail[6] = " " 
+      end
     when '8'
-      cases[7].value = @current_player.value
+      if cases[7].value == " "
+        cases[7].value = @current_player.value
+        array_avail[7] = " " 
+      end
     when '9'
-      cases[8].value = @current_player.value
+      if cases[8].value == " "
+        cases[8].value = @current_player.value
+        array_avail[8] = " " 
+      end
     end
-
     # Après avoir joué, on met à jour le statut du jeu.
     @status = @board.victory?
+    # on change de joueur
+    if @status == "on going"
+      if @current_player == @array_player[0]
+        @current_player = @array_player[1]
+      else
+        @current_player = @array_player[0]
+      end
+    end
+    return array_avail
   end
 
-  # nouvelle partie en changeant celui qui commence
+  # nouveau round en changeant celui qui commence
   def new_round
     # On inverse les symboles (valeurs) des deux joueurs
     if @array_player[0].value == 'x'
@@ -54,12 +89,12 @@ class Game
     # Le joueur qui a maintenant les 'x' commence
     @current_player = @array_player.find { |player| player.value == 'x' }
     puts "\nC'est parti pour une nouvelle manche ! Les rôles ont été échangés."
-    puts "Appuyez sur Entrée pour continuer..."
+    print "Appuyez sur Entrée pour continuer..."
     gets
   end
 
   def game_end
-    puts "\nEntrée pour recommencer une partie ou q pour quitter"
+    print "\nEntrée pour recommencer une partie ou q pour quitter "
     choice = gets.chomp.downcase
     if choice == 'q'
       puts "\nAu revoir !"

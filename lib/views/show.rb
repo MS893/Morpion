@@ -2,7 +2,7 @@ class Show
   require 'app/game'
 
   # affiche le morpion et le prompt sur le terminal
-  def show_board(game)
+  def show_board(game, array_avail)
     cases = game.board.board_cases
     ligne_A = " #{cases[0].value} | #{cases[1].value} | #{cases[2].value} "
     ligne_B = " #{cases[3].value} | #{cases[4].value} | #{cases[5].value} "
@@ -16,7 +16,7 @@ class Show
     puts "  ---+---+---"
     puts "C " + ligne_C
     puts "\n"
-    show_menu(game)
+    show_menu(game, array_avail)
   end
 
 
@@ -59,17 +59,35 @@ class Show
 
   private
   # affiche le menu sur le terminal
-  def show_menu(game)
+  def show_menu(game, array_avail)
     puts "\nChoisissez une case à cocher :"
-    puts "  1. A1"
-    puts "  2. A2"
-    puts "  3. A3"
-    puts "  4. B1"
-    puts "  5. B2"
-    puts "  6. B3"
-    puts "  7. C1"
-    puts "  8. C2"
-    puts "  9. C3"
+    if array_avail[0] != " "
+      puts "  1. A1"
+    end
+    if array_avail[1] != " "
+      puts "  2. A2"
+    end
+    if array_avail[2] != " "
+      puts "  3. A3"
+    end
+    if array_avail[3] != " "
+      puts "  4. B1"
+    end 
+    if array_avail[4] != " "
+      puts "  5. B2"
+    end
+    if array_avail[5] != " "
+      puts "  6. B3"
+    end
+    if array_avail[6] != " "
+      puts "  7. C1"
+    end
+    if array_avail[7] != " "
+      puts "  8. C2"
+    end
+    if array_avail[8] != " "
+      puts "  9. C3"
+    end
     puts "  q. Quitter"
     print "\nA #{game.current_player.name} de jouer > "
   end

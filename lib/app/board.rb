@@ -7,12 +7,6 @@ class Board
     @board_cases = %w[A1 A2 A3 B1 B2 B3 C1 C2 C3].map { |id| BoardCase.new(id) }
   end
 
-  def play_turn
-    #TO DO : une méthode qui :<
-    #1) demande au bon joueur ce qu'il souhaite faire
-    #2) change la BoardCase jouée en fonction de la valeur du joueur (X ou O)
-  end
-
   # teste si un joueur a gagné ou match nul
   def victory?
     # combinaisons gagnantes

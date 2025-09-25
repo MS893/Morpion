@@ -16,22 +16,22 @@ class Application
     print "Nom du second joueur  (jouera les o): "
     player2_name = gets.chomp.to_s
     
-    game = Game.new(player1_name, player2_name)
-    cases = game.board.board_cases
+    my_game = Game.new(player1_name, player2_name)
+    cases = my_game.board.board_cases
     
     # on affiche les règles du jeu
-    Show.new.show_rules(game)
+    Show.new.show_rules(my_game)
     
     loop do
   
       # Affiche le tableau et le menu
-      Show.new.show_board(game.board)
+      Show.new.show_board(my_game)
   
       # Lit le choix de l'utilisateur
       choice = gets.chomp.downcase
       case choice
       when *('1'..'9').to_a # Accepte les chiffres de '1' à '9'
-        game.turn(choice)
+        my_game.turn(choice)
       when 'q'
         puts "\nAu revoir !"
         puts ""
@@ -42,20 +42,23 @@ class Application
   
       # Pause pour que l'utilisateur puisse voir le résultat avant de ré-afficher le menu
       unless choice == 'q'
-        Show.new.clear_screen
-        if game.victory? == "nul"
+        Show.new.clear_screen()
+        game_status = my_game.status
+        if game_status == "nul"
           puts "Match nul !"
-          game.new_round
-        elsif game.victory? == "x" || game.victory? == "o"
-          puts "#{game.current_player.name} a gagné !"
-          game.new_round
+          my_game.game_end()
+        elsif game_status == "x" || game_status == "o"
+          puts "#{my_game.current_player.name} a gagné !"
+          my_game.game_end()
         else # "on going"
           # la partie continue, on passe au joueur suivant
-          if game.current_player == game.array_player[0]
-            game.current_player = game.array_player[1]
+          if my_game.current_player == my_game.array_player[0]
+            my_game.current_player = my_game.array_player[1]
           else
-            game.current_player = game.array_player[0]
+            my_game.current_player = my_game.array_player[0]
           end
+          # nouveau round
+          my_game.new_round()
         end
       end
   

@@ -1,5 +1,5 @@
 class Board
-  require_relative 'boardcase'
+  require 'app/boardcase'
 
   attr_accessor :board_cases
 
@@ -21,7 +21,7 @@ class Board
       [0, 3, 6], [1, 4, 7], [2, 5, 8], # Colonnes
       [0, 4, 8], [2, 4, 6]             # Diagonales
     ]
-    # on vérifie s'il y a un gagnant
+    # on vérifie s'il y a un gagnant (ce qui écrasera la valeur de status si modifié ci-dessus)
     winning_combinations.each do |combo|
       val1 = @board_cases[combo[0]].value
       val2 = @board_cases[combo[1]].value
@@ -31,9 +31,12 @@ class Board
       end
     end
     # on vérifie s'il y a match nul (morpion plein)
-    return "nul" if @board_cases.all? { |board_case| board_case.value != " " }
-    # la partie continue
-    return "on going"
+    if @board_cases.all? { |board_case| board_case.value != " " }
+      return "nul"
+    else
+      # la partie continue
+      return "on going"
+    end
   end
 
 end

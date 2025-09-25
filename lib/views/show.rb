@@ -2,10 +2,8 @@ class Show
   require 'app/game'
 
   # affiche le morpion et le prompt sur le terminal
-  def show_board(board)
-    # S'active avec un Show.new.show_board(instance_de_Board)
-
-    cases = board.board_cases
+  def show_board(game)
+    cases = game.board.board_cases
     ligne_A = " #{cases[0].value} | #{cases[1].value} | #{cases[2].value} "
     ligne_B = " #{cases[3].value} | #{cases[4].value} | #{cases[5].value} "
     ligne_C = " #{cases[6].value} | #{cases[7].value} | #{cases[8].value} "
@@ -18,8 +16,7 @@ class Show
     puts "  ---+---+---"
     puts "C " + ligne_C
     puts "\n"
-    show_menu()
-
+    show_menu(game)
   end
 
 
@@ -62,7 +59,7 @@ class Show
 
   private
   # affiche le menu sur le terminal
-  def show_menu
+  def show_menu(game)
     puts "\nChoisissez une case à cocher :"
     puts "  1. A1"
     puts "  2. A2"
@@ -74,7 +71,7 @@ class Show
     puts "  8. C2"
     puts "  9. C3"
     puts "  q. Quitter"
-    print "\nVotre choix > "
+    print "\nA #{game.current_player.name} de jouer > "
   end
 
 end

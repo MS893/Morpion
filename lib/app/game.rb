@@ -14,8 +14,30 @@ class Game
 
   # le joueur courant a joué
   def turn(choice)
-    #TO DO : méthode faisant appelle aux méthodes des autres classes (notamment à l'instance de Board). Elle affiche le plateau, demande au joueur ce qu'il joue, vérifie si un joueur a gagné, passe au joueur suivant si la partie n'est pas finie.
-    
+    cases = board.board_cases
+    case choice
+    when '1'
+      cases[0].value = @current_player.value
+    when '2'
+      cases[1].value = @current_player.value
+    when '3'
+      cases[2].value = @current_player.value
+    when '4'
+      cases[3].value = @current_player.value
+    when '5'
+      cases[4].value = @current_player.value
+    when '6'
+      cases[5].value = @current_player.value
+    when '7'
+      cases[6].value = @current_player.value
+    when '8'
+      cases[7].value = @current_player.value
+    when '9'
+      cases[8].value = @current_player.value
+    end
+
+    # Après avoir joué, on met à jour le statut du jeu.
+    @status = @board.victory?
   end
 
   # nouvelle partie en changeant celui qui commence
@@ -24,7 +46,7 @@ class Game
     if @array_player[0].value == 'x'
       @array_player[0].value = 'o'
       @array_player[1].value = 'x'
-    else
+    end
     # On réinitialise le jeu
     @board = Board.new
     # On remet le statut de la partie à "en cours"
@@ -37,7 +59,14 @@ class Game
   end
 
   def game_end
-    # TO DO : permet l'affichage de fin de partie quand un vainqueur est détecté ou si il y a match nul
+    puts "\nEntrée pour recommencer une partie ou q pour quitter"
+    choice = gets.chomp.downcase
+    if choice == 'q'
+      puts "\nAu revoir !"
+      puts ""
+    else
+      Game.new.perform
+    end
   end    
 
 end

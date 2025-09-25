@@ -10,10 +10,10 @@ class Application
     Show.new.show_start 
 
     # paramètres à saisir
-    print "Nom du premier joueur (jouera les X): "
+    print "Nom du premier joueur (jouera les x): "
     player1_name = gets.chomp.to_s
 
-    print "Nom du second joueur  (jouera les O): "
+    print "Nom du second joueur  (jouera les o): "
     player2_name = gets.chomp.to_s
     
     game = Game.new(player1_name, player2_name)
@@ -43,18 +43,19 @@ class Application
       # Pause pour que l'utilisateur puisse voir le résultat avant de ré-afficher le menu
       unless choice == 'q'
         Show.new.clear_screen
-        if game.victory? == "0"
+        if game.victory? == "nul"
           puts "Match nul !"
+          game.new_round
         elsif game.victory? == "x" || game.victory? == "o"
           puts "#{game.current_player.name} a gagné !"
-        else
+          game.new_round
+        else # "on going"
           # la partie continue, on passe au joueur suivant
           if game.current_player == game.array_player[0]
             game.current_player = game.array_player[1]
           else
             game.current_player = game.array_player[0]
           end
-          game.new_round
         end
       end
   

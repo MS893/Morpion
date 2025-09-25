@@ -31,9 +31,9 @@ class Board
       end
     end
     # on vérifie s'il y a match nul (morpion plein)
-    return "0" if @board_cases.all? { |board_case| board_case.value != " " }
+    return "nul" if @board_cases.all? { |board_case| board_case.value != " " }
     # la partie continue
-    return "1"
+    return "on going"
   end
 
 end

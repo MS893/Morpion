@@ -9,7 +9,7 @@ class Game
     @array_player = [Player.new(player1_name, "x"), Player.new(player2_name, "o")]
     @board = Board.new
     @status = "on going"    # en cours, nul ou le joueur qui a gagné
-    @current_player = @player1
+    @current_player = @array_player[0] # Le joueur 1 (x) commence
   end
 
   # le joueur courant a joué
@@ -18,8 +18,22 @@ class Game
     
   end
 
+  # nouvelle partie en changeant celui qui commence
   def new_round
-    # TO DO : relance une partie en initialisant un nouveau board mais en gardant les mêmes joueurs.
+    # On inverse les symboles (valeurs) des deux joueurs
+    if @array_player[0].value == 'x'
+      @array_player[0].value = 'o'
+      @array_player[1].value = 'x'
+    else
+    # On réinitialise le jeu
+    @board = Board.new
+    # On remet le statut de la partie à "en cours"
+    @status = "on going"
+    # Le joueur qui a maintenant les 'x' commence
+    @current_player = @array_player.find { |player| player.value == 'x' }
+    puts "\nC'est parti pour une nouvelle manche ! Les rôles ont été échangés."
+    puts "Appuyez sur Entrée pour continuer..."
+    gets
   end
 
   def game_end

@@ -64,14 +64,8 @@ class Game
     end
     # Après avoir joué, on met à jour le statut du jeu.
     @status = @board.victory?
-    # on change de joueur
-    if @status == "on going"
-      if @current_player == @array_player[0]
-        @current_player = @array_player[1]
-      else
-        @current_player = @array_player[0]
-      end
-    end
+    # On change de joueur uniquement si la partie continue
+    switch_player if @status == "on going"
     return array_avail
   end
 
@@ -94,14 +88,24 @@ class Game
   end
 
   def game_end
-    print "\nEntrée pour recommencer une partie ou q pour quitter "
+    print "\nEntrée pour recommencer une partie ou q pour quitter > "
     choice = gets.chomp.downcase
     if choice == 'q'
       puts "\nAu revoir !"
       puts ""
+      return true
     else
-      Game.new.perform
+      return false  # on continue
     end
   end    
+
+  private
+  def switch_player
+    if @current_player == @array_player[0]
+      @current_player = @array_player[1]
+    else
+      @current_player = @array_player[0]
+    end
+  end
 
 end

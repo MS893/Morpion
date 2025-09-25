@@ -16,7 +16,9 @@ class Show
     puts "  ---+---+---"
     puts "C " + ligne_C
     puts "\n"
-    show_menu(game, array_avail)
+    if game.status == "on going"
+      show_menu(game, array_avail)
+    end
   end
 
 
@@ -61,32 +63,11 @@ class Show
   # affiche le menu sur le terminal
   def show_menu(game, array_avail)
     puts "\nChoisissez une case à cocher :"
-    if array_avail[0] != " "
-      puts "  1. A1"
-    end
-    if array_avail[1] != " "
-      puts "  2. A2"
-    end
-    if array_avail[2] != " "
-      puts "  3. A3"
-    end
-    if array_avail[3] != " "
-      puts "  4. B1"
-    end 
-    if array_avail[4] != " "
-      puts "  5. B2"
-    end
-    if array_avail[5] != " "
-      puts "  6. B3"
-    end
-    if array_avail[6] != " "
-      puts "  7. C1"
-    end
-    if array_avail[7] != " "
-      puts "  8. C2"
-    end
-    if array_avail[8] != " "
-      puts "  9. C3"
+    # on affiche uniquement celles qui sont encore disponibles.
+    game.board.board_cases.each_with_index do |board_case, index|
+      if board_case.value == " "
+        puts "  #{index + 1}. #{board_case.case_ident}"
+      end
     end
     puts "  q. Quitter"
     print "\nA #{game.current_player.name} de jouer > "

@@ -27,9 +27,7 @@ class Application
 
     loop do
   
-      # liste des choix possibles
-      array_avail = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
-      # Affiche le tableau et le menu
+      # Affiche le morpion et le menu
       Show.new.show_board(my_game, array_avail)
 
       # Lit le choix de l'utilisateur
@@ -40,22 +38,29 @@ class Application
       when 'q'
         puts "\nAu revoir !"
         puts ""
-        break
+        break # on quitte le programme
       else
         puts "\nErreur : Choix non valide. Veuillez réessayer."
       end
   
       # Pause pour que l'utilisateur puisse voir le résultat avant de ré-afficher le menu
       unless choice == 'q'
+        Show.new.clear_screen()
         game_status = my_game.status
-        if game_status == "nul"
-          puts "Match nul !"
-          my_game.game_end()
-        elsif game_status == "x" || game_status == "o"
-          puts "#{my_game.current_player.name} a gagné !"
-          my_game.game_end()
-        else
-          Show.new.clear_screen()
+        if game_status != "on going"
+          Show.new.show_board(my_game, array_avail)
+          if game_status == "nul"
+            puts "\nMatch nul !"
+          elsif game_status == "x" || game_status == "o"
+            puts "\n#{my_game.current_player.name} (#{my_game.current_player.value}) a gagné !"
+          end
+          if my_game.game_end()
+            break # on quitte le programme
+          else
+            Show.new.clear_screen
+            my_game.new_round
+            Show.new.clear_screen
+          end
         end
       end
   

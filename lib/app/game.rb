@@ -1,6 +1,7 @@
+require 'app/player'
+require 'app/board'
+
 class Game
-  require 'app/player'
-  require 'app/board'
 
   attr_accessor :array_player, :board, :status, :current_player
 

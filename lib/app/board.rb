@@ -1,5 +1,6 @@
+require 'app/boardcase'
+
 class Board
-  require 'app/boardcase'
 
   attr_accessor :board_cases
 

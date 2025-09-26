@@ -1,5 +1,6 @@
+require 'app/game'
+
 class Show
-  require 'app/game'
 
   # affiche le morpion et le prompt sur le terminal
   def show_board(game, array_avail)

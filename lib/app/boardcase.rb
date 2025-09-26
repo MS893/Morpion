@@ -1,3 +1,4 @@
+
 class BoardCase
   attr_accessor :value, :case_ident
   
